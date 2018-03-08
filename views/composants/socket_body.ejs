@@ -8,7 +8,7 @@
 	<table id='list_user'></table>
 	<table id='message'></table>
 	<section id='message_a_transmettre'>
-		<input type="text" name="txtMessage"><button>Transmettre</button>
+		<input type="text" name="txtMessage"><button onclick="transmettre_un_message()">Transmettre</button>
 	</section>
 </section>
 
@@ -31,32 +31,62 @@ Pour établir une communication socket il faut un premier appel de
 	 	socket.on('valide_user', function(data){
 	 		console.log('data en provenance du serveur = ' + data.user)
 	 		let elmEnregistrement = document.getElementById('enregistrement')
-	 		//elmEnregistrement.style.display = 'none';
+	 		elmEnregistrement.style.display = 'none';
 	 		let elmChat = document.getElementById('chat')
-	 		elmChat.style.display = 'flex'
+	 		elmChat.style.display = 'block'
 	 	})
 	
-/* ---------------------------------------------------------- */
 
+ ///////////////////////////////////// afficher diffuser list user
 		socket.on('diffuser_list_user', function(data) {
-			let sChaine = ''
-			for (id in data) {
-				sChaine += '<tr>'
-						+ '<td>' + id + '</td>'
-						+ '<td>' + data[id] + '</td>'
-						+ '</tr>'
-			}
-			let elmListUser = document.getElementById('list_user')
-			elmListUser.innerHTML = sChaine
-		});
-	})
+			affiche_table_users(data)
+		})
+ ///////////////////////////////////// afficher valide message
+ 		socket.on('valide_message', function(data) {
+ 			console.log('valide_message = ' + data)
+ 			afficher_mon_message(data, '#0f0')
+ 		})
+ ///////////////////////////////////// afficher valide message
+		 socket.on('diffuser_message', function(data) {
+		 	console.log('diffuser_message = ' + data)
+		 	afficher_mon_message(data, '#00f')
+		 })
+	});
 }
 
+/* ---------------------------------------------------------- */
  function enregistrement(){
  var elmUser = document.querySelector('#enregistrement input')
  console.log(elmUser.value)
  /* l'événement « setUser » est transmit avec un objet 
  */
  socket.emit('setUser', {user : elmUser.value})
+ }
+
+ // ---------------------------------------------------------- transmettre un message
+ function transmettre_un_message(){
+ var elmMessage = document.querySelector('#message_a_transmettre input')
+ console.log(elmMessage.value)
+ /* l'événement « setUser » est transmit avec un objet 
+ */
+ socket.emit('setMessage', {message : elmMessage.value})
+ }
+
+ ///////////////////////////////////// afficher tableau users
+ function affiche_table_users(data) {
+ 	let sChaine = ''
+	for (id in data) {
+		sChaine += '<tr>'
+				+ '<td>' + id + '</td>'
+				+ '<td>' + data[id] + '</td>'
+				+ '</tr>'
+	}
+	let elmListUser = document.getElementById('list_user')
+	elmListUser.innerHTML = sChaine
+ }
+
+///////////////////////////////////// afficher mon message
+ function afficher_mon_message(data) {
+
  }
 </script>
