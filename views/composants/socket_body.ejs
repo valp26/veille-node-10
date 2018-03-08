@@ -33,7 +33,7 @@ Pour établir une communication socket il faut un premier appel de
 	 		let elmEnregistrement = document.getElementById('enregistrement')
 	 		elmEnregistrement.style.display = 'none';
 	 		let elmChat = document.getElementById('chat')
-	 		elmChat.style.display = 'block'
+	 		elmChat.style.display = 'inline-block'
 	 	})
 	
 
@@ -54,9 +54,11 @@ Pour établir une communication socket il faut un premier appel de
 	});
 }
 
+let username;
 /* ---------------------------------------------------------- */
  function enregistrement(){
  var elmUser = document.querySelector('#enregistrement input')
+ username = elmUser.value
  console.log(elmUser.value)
  /* l'événement « setUser » est transmit avec un objet 
  */
@@ -69,15 +71,15 @@ Pour établir une communication socket il faut un premier appel de
  console.log(elmMessage.value)
  /* l'événement « setUser » est transmit avec un objet 
  */
- socket.emit('setMessage', {message : elmMessage.value})
+ socket.emit('setMessage', {nom: username, message : elmMessage.value})
  }
 
  ///////////////////////////////////// afficher tableau users
  function affiche_table_users(data) {
- 	let sChaine = ''
+ 	let sChaine = '<th>Utilisateurs en ligne</th>'
 	for (id in data) {
 		sChaine += '<tr>'
-				+ '<td>' + id + '</td>'
+				//+ '<td>' + id + '</td>'
 				+ '<td>' + data[id] + '</td>'
 				+ '</tr>'
 	}
@@ -87,6 +89,14 @@ Pour établir une communication socket il faut un premier appel de
 
 ///////////////////////////////////// afficher mon message
  function afficher_mon_message(data) {
-
+ 	let sChaine = ''
+	
+		sChaine += '<tr>'
+				+ '<td><b>' + data['nom'] + ': '+ '</b></td>'
+				+ '<td>' + data['message'] + '</td>'
+				+ '</tr>'
+	
+	let elmListMessage = document.getElementById('message')
+	elmListMessage.innerHTML += sChaine
  }
 </script>
