@@ -70,6 +70,18 @@ html {
 			display: block;
 			text-align: center;
 			margin:0 auto;
+
+			#message {
+				display: flex;
+				flex-direction: column;
+				height: 200px;
+  				overflow-y: auto;
+  				vertical-align: bottom;
+
+  				@media screen and (max-width: 850px) {
+					height:100px;
+    			}
+			}
 		}
 
 
