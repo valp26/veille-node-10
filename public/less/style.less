@@ -71,23 +71,28 @@ html {
 			text-align: center;
 			margin:0 auto;
 
+			#list_user {
+				width: 100%;
+				margin-bottom: 20px;
+			}
+
 			#message {
 				display: flex;
 				flex-direction: column;
 				height: 200px;
   				overflow-y: auto;
-  				vertical-align: bottom;
+  				border: 2px solid lightblue;
+  				border-radius: 15px;
+  				margin-bottom: 20px;
+  				background: white;
 
   				@media screen and (max-width: 850px) {
 					height:100px;
     			}
+    				.messageUser {
+    					padding-left:3px;
+    				}
 			}
-		}
-
-
-		#list_user {
-			width: 100%;
-			margin-bottom: 20px;
 		}
 	}
 

@@ -92,11 +92,15 @@ let username;
  	let sChaine = ''
 	
 		sChaine += '<tr>'
-				+ '<td><b>' + data['nom'] + ': '+ '</b></td>'
-				+ '<td>' + data['message'] + '</td>'
+				+ '<td><b>' + data['nom'] + ':' + '</b></td>'
+				+ '<td class= "messageUser">' + data['message'] + '</td>'
 				+ '</tr>'
 	
 	let elmListMessage = document.getElementById('message')
 	elmListMessage.innerHTML += sChaine
+	//Scroll automatique vers le bas de la boîte de clavardagechaque fois qu'un nouveau message est envoyé
+	elmListMessage.scrollTop = elmListMessage.scrollHeight;
  }
+
+ 
 </script>
