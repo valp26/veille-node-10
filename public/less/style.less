@@ -4,10 +4,12 @@ html {
 		width: 100%;
 		background: lightblue;
 
-		nav a {
+		nav {
+			a {
 			margin-right: 10px;
 			margin-left: 10px;
 			color: white;
+			}
 		}
 	}
    
@@ -20,6 +22,14 @@ html {
 
 		form {
 			margin: 40px;
+			display:flex;
+			align-items: center;
+    		justify-content: center;
+			text-align: center;
+
+			@media screen and (max-width: 850px) {
+				display:inherit;
+    		}
 
 			input {
 				border-radius: 3px;
@@ -35,8 +45,12 @@ html {
 			margin: 0 auto;
 			box-shadow: 3px 5px 5px 5px #888888;
 
+			@media screen and (max-width: 630px) {
+				width: 100%;
+    		}
+
 			th {
-				background: blue;
+				background: navy;
 				border: 1px solid black;
 				color: white;
 				text-decoration:none;
@@ -58,6 +72,7 @@ html {
 			margin:0 auto;
 		}
 
+
 		#list_user {
 			width: 100%;
 			margin-bottom: 20px;
@@ -68,10 +83,20 @@ html {
 		font-size:0.8em;
 		text-align: center;
 		margin-top: 40px;
+		background: navy;
+		color: lightblue;
+		padding: 10px;
+		display:flex;
+		align-items: center;
+    	justify-content: center;
 
 		ul {
 			list-style-type: none;
 			padding-left: 0;
+
+			a {
+				color:lightblue;
+			}
 		}
 	}
 }
